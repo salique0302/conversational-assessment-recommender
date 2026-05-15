@@ -1,0 +1,65 @@
+[
+    {
+        "id": "cefdb12f-60b4-5480-b215-3a16d64f1c06",
+        "name": "Verify Numerical Reasoning",
+        "description": "Measures the ability to make correct decisions or inferences from numerical or statistical data.",
+        "category": "Cognitive",
+        "metadata": {
+            "time_limit": "25 mins"
+        }
+    },
+    {
+        "id": "a46df005-fddf-5d85-b499-44c90c4ec955",
+        "name": "Verify Verbal Reasoning",
+        "description": "Measures the ability to evaluate the logic of various kinds of arguments.",
+        "category": "Cognitive",
+        "metadata": {
+            "time_limit": "30 mins"
+        }
+    },
+    {
+        "id": "6aa4da26-0ecb-56a8-8c2d-98fe66ad39bf",
+        "name": "OPQ32 (Occupational Personality Questionnaire)",
+        "description": "Provides a clear, simple framework for understanding the impact of personality on job performance.",
+        "category": "Personality",
+        "metadata": {
+            "time_limit": "Untimed"
+        }
+    },
+    {
+        "id": "33fe8196-462d-519b-b5b9-0a4f27121d55",
+        "name": "Verify Inductive Reasoning",
+        "description": "Measures the ability to draw inferences and understand the relationships between various concepts.",
+        "category": "Cognitive",
+        "metadata": {
+            "time_limit": "25 mins"
+        }
+    },
+    {
+        "id": "f63c50c8-c6a3-5b9f-96e4-5828116eb1f9",
+        "name": "Verify Deductive Reasoning",
+        "description": "Measures the ability to draw logical conclusions based on information provided.",
+        "category": "Cognitive",
+        "metadata": {
+            "time_limit": "20 mins"
+        }
+    },
+    {
+        "id": "afd6d39a-2ba5-545d-b8f3-6fa6287113fa",
+        "name": "Coding Simulator",
+        "description": "Evaluates candidate's coding skills in multiple programming languages.",
+        "category": "Skills",
+        "metadata": {
+            "time_limit": "60 mins"
+        }
+    },
+    {
+        "id": "e5328951-6d5c-5218-be4c-6f393c667d57",
+        "name": "Contact Center Simulation",
+        "description": "Assesses an individual's ability to handle customer service scenarios effectively.",
+        "category": "Behavioral",
+        "metadata": {
+            "time_limit": "45 mins"
+        }
+    }
+]
