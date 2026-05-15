@@ -35,8 +35,8 @@ class RetrieverService:
         # 1. Generate query embedding
         query_embedding = self.embedding_model.encode([query], convert_to_numpy=True)
         
-        # 2. FAISS retrieval (get more than top_k to allow for filtering/reranking)
-        retrieve_k = min(20, len(self.catalog))
+        # 2. FAISS retrieval (get top 10 to optimize CrossEncoder latency)
+        retrieve_k = min(10, len(self.catalog))
         distances, indices = self.index.search(query_embedding, retrieve_k)
         
         retrieved_items = []
