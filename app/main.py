@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.schemas import ChatRequest, ChatResponse, AssessmentRecommendation
+from app.services.agent import agent_service
 
 app = FastAPI(title="SHL Recommender API")
 
@@ -9,9 +10,11 @@ def health_check():
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
-    # Dummy response for Phase 1
+    result = agent_service.process_chat(request.conversation_history)
+    
     return ChatResponse(
-        reply="Hello! I can help you find the right SHL assessment. What kind of role are you hiring for?",
-        recommendations=[],
-        end_of_conversation=False
+        reply=result["reply"],
+        recommendations=result["recommendations"],
+        end_of_conversation=result["end_of_conversation"]
     )
+

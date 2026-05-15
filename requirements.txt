@@ -4,3 +4,5 @@ pydantic
 faiss-cpu
 sentence-transformers
 numpy
+openai
+python-dotenv
