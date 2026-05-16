@@ -77,9 +77,19 @@ class AgentService:
         recommendations = []
         end_of_conversation = False
         
+        # --- Fallback Guardrail Detection ---
+        INJECTION_KEYWORDS = [
+            "ignore instructions", "ignore previous instructions", "bypass", 
+            "recommend non-shl", "random tests", "override system", "ignore all instructions"
+        ]
+        combined_text = " ".join([m.content for m in history]).lower()
+        if any(kw in combined_text for kw in INJECTION_KEYWORDS):
+            intent.is_injection_attempt = True
+            intent.action = "refuse"
+        
         # 1. Orchestrator Flow: Handle Refusals and Out of Scope
         if intent.is_off_topic or intent.is_injection_attempt or intent.action == "refuse":
-            reply = "I can only assist with SHL assessments and recruitment queries. How can I help you with your hiring needs?"
+            reply = "I can only recommend assessments from the SHL catalog for hiring and talent evaluation use cases."
             return {"reply": reply, "recommendations": [], "end_of_conversation": False}
             
         # 2. Orchestrator Flow: Handle Comparisons
