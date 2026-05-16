@@ -72,14 +72,33 @@ class RetrieverService:
         for item, score in zip(retrieved_items, scores):
             query_lower = query.lower()
             name_lower = item['name'].lower()
+            desc_lower = item['description'].lower()
+            test_type = item.get('test_type', item.get('category', '')).lower()
             
-            # Simple lexical boost for keyword matches
             overlap_bonus = 0.0
-            for term in query_lower.split():
-                if len(term) > 3 and term in name_lower:
+            query_terms = set([w.strip(',.') for w in query_lower.split()])
+            name_terms = set([w.strip(',.') for w in name_lower.split()])
+            desc_terms = set([w.strip(',.') for w in desc_lower.split()])
+            
+            # 1. Exact keyword overlap
+            overlap_bonus += len(query_terms.intersection(name_terms)) * 2.0
+            overlap_bonus += len(query_terms.intersection(desc_terms)) * 0.5
+            
+            # 2. Technical role boosting
+            is_technical_query = any(kw in query_lower for kw in ["developer", "engineer", "software", "java", "python", "coding"])
+            if is_technical_query:
+                if test_type == "technical" or "coding" in name_lower:
+                    overlap_bonus += 5.0
+                elif test_type == "behavioral":
+                    overlap_bonus -= 3.0  # Penalize unrelated
+                    
+            # 3. Behavioral trait boosting
+            is_behavioral_query = any(kw in query_lower for kw in ["stakeholder", "communication", "leadership", "behavior", "customer"])
+            if is_behavioral_query and not is_technical_query: # Only boost if primary goal isn't technical, or if it's explicitly both
+                if test_type == "behavioral" or test_type == "personality":
                     overlap_bonus += 2.0
                     
-            # Domain specific synonym handling
+            # 4. Domain specific synonym handling
             if "statistical" in query_lower and "numerical" in name_lower:
                 overlap_bonus += 3.0
                 
