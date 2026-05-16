@@ -160,12 +160,20 @@ class AgentService:
         elif intent.action in ["recommend", "refine"]:
             query = intent.search_query or history[-1].content
             results = retriever_service.semantic_search(query, top_k=3, filters=intent.filters)
-            recommendations = results
+            recommendations = []
             
             if not results:
                 reply = "I couldn't find any specific SHL assessments matching your exact needs in our catalog. Could we try adjusting the criteria?"
             else:
-                names = [r['name'] for r in results]
+                names = []
+                for r in results:
+                    names.append(r['name'])
+                    recommendations.append({
+                        "name": r['name'],
+                        "url": r.get('url', ''),
+                        "test_type": r.get('test_type', r.get('category', ''))
+                    })
+                
                 if intent.action == "refine":
                     reply = f"I've updated the recommendations based on your new constraints. Here are {len(results)} assessments from our catalog that fit better: {', '.join(names)}."
                 else:

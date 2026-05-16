@@ -9,9 +9,9 @@ class ChatRequest(BaseModel):
     conversation_history: List[Message] = Field(default_factory=list, alias="messages")
 
 class AssessmentRecommendation(BaseModel):
-    id: str
     name: str
-    description: str
+    url: str
+    test_type: str
 
 class ChatResponse(BaseModel):
     reply: str
