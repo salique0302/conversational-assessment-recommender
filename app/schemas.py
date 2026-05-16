@@ -6,7 +6,7 @@ class Message(BaseModel):
     content: str
 
 class ChatRequest(BaseModel):
-    conversation_history: List[Message] = Field(default_factory=list)
+    conversation_history: List[Message] = Field(default_factory=list, alias="messages")
 
 class AssessmentRecommendation(BaseModel):
     id: str

@@ -107,15 +107,37 @@ class AgentService:
             return {"reply": reply, "recommendations": [], "end_of_conversation": end_of_conversation}
             
         # 4. Context Validation & Flexible Scoring
+        # --- Deterministic Fallback Extraction ---
+        ROLE_KEYWORDS = ["developer", "engineer", "manager", "analyst", "designer"]
+        SENIORITY_KEYWORDS = ["junior", "mid-level", "mid", "senior", "lead", "principal"]
+        SKILL_KEYWORDS = ["stakeholder", "communication", "leadership", "java", "python", "sql", "teamwork", "stakeholders"]
+        
+        combined_text = " ".join([m.content for m in history]).lower()
+        
+        if any(kw in combined_text for kw in ROLE_KEYWORDS):
+            intent.has_role = True
+        if any(kw in combined_text for kw in SENIORITY_KEYWORDS):
+            intent.has_seniority = True
+        if any(kw in combined_text for kw in SKILL_KEYWORDS):
+            intent.has_skills_or_traits = True
+
         # Determine if we have enough context to skip clarification
-        context_score = sum([intent.has_role, intent.has_seniority, intent.has_skills_or_traits])
+        context_score = int(intent.has_role) + int(intent.has_seniority) + int(intent.has_skills_or_traits)
         
         # Override action based on score thresholds (Score >= 2 -> Retrieve)
-        if intent.action not in ["refine"]: # allow explicit refine to bypass if needed, or enforce it
+        if intent.action not in ["refine", "compare", "complete", "refuse"]:
             if context_score < 2:
                 intent.action = "clarify"
             else:
                 intent.action = "recommend"
+                
+        # --- Debug Logs ---
+        print(f"EXTRACTED INTENT: {intent.model_dump_json()}")
+        print(f"HAS ROLE: {intent.has_role}")
+        print(f"HAS SENIORITY: {intent.has_seniority}")
+        print(f"HAS SKILLS: {intent.has_skills_or_traits}")
+        print(f"CONTEXT SCORE: {context_score}")
+        print(f"DECISION ACTION: {intent.action.upper()}")
                 
         # 5. Execute Action based on Priority
         if intent.action == "clarify":
