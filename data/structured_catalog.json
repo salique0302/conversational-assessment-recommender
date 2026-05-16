@@ -4,6 +4,8 @@
         "name": "Verify Numerical Reasoning",
         "description": "Measures the ability to make correct decisions or inferences from numerical or statistical data.",
         "category": "Cognitive",
+        "url": "https://www.shl.com/en/assessments/cognitive/numerical-reasoning/",
+        "test_type": "Cognitive",
         "metadata": {
             "time_limit": "25 mins"
         }
@@ -13,6 +15,8 @@
         "name": "Verify Verbal Reasoning",
         "description": "Measures the ability to evaluate the logic of various kinds of arguments.",
         "category": "Cognitive",
+        "url": "https://www.shl.com/en/assessments/cognitive/verbal-reasoning/",
+        "test_type": "Cognitive",
         "metadata": {
             "time_limit": "30 mins"
         }
@@ -22,6 +26,8 @@
         "name": "OPQ32 (Occupational Personality Questionnaire)",
         "description": "Provides a clear, simple framework for understanding the impact of personality on job performance.",
         "category": "Personality",
+        "url": "https://www.shl.com/en/assessments/personality/opq32/",
+        "test_type": "Personality",
         "metadata": {
             "time_limit": "Untimed"
         }
@@ -31,6 +37,8 @@
         "name": "Verify Inductive Reasoning",
         "description": "Measures the ability to draw inferences and understand the relationships between various concepts.",
         "category": "Cognitive",
+        "url": "https://www.shl.com/en/assessments/cognitive/inductive-reasoning/",
+        "test_type": "Cognitive",
         "metadata": {
             "time_limit": "25 mins"
         }
@@ -40,6 +48,8 @@
         "name": "Verify Deductive Reasoning",
         "description": "Measures the ability to draw logical conclusions based on information provided.",
         "category": "Cognitive",
+        "url": "https://www.shl.com/en/assessments/cognitive/deductive-reasoning/",
+        "test_type": "Cognitive",
         "metadata": {
             "time_limit": "20 mins"
         }
@@ -49,6 +59,8 @@
         "name": "Coding Simulator",
         "description": "Evaluates candidate's coding skills in multiple programming languages.",
         "category": "Skills",
+        "url": "https://www.shl.com/en/assessments/technical/coding-simulator/",
+        "test_type": "Technical",
         "metadata": {
             "time_limit": "60 mins"
         }
@@ -58,6 +70,8 @@
         "name": "Contact Center Simulation",
         "description": "Assesses an individual's ability to handle customer service scenarios effectively.",
         "category": "Behavioral",
+        "url": "https://www.shl.com/en/assessments/behavioral/contact-center-simulation/",
+        "test_type": "Behavioral",
         "metadata": {
             "time_limit": "45 mins"
         }

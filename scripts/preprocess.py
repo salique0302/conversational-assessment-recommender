@@ -15,6 +15,8 @@ def preprocess_catalog():
             "name": item["title"],
             "description": item["desc"],
             "category": item["category"],
+            "url": item.get("url", ""),
+            "test_type": item.get("test_type", item["category"]),
             "metadata": {
                 "time_limit": item["time_limit"]
             }
