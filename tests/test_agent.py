@@ -76,5 +76,18 @@ def test_guardrails_and_refusal():
     assert result["end_of_conversation"] is False
     assert "I can only recommend assessments from the SHL catalog" in result["reply"]
 
+def test_comparison_intent_and_response():
+    history = [
+        Message(role="user", content="What is the difference between OPQ32 and Verify Verbal Reasoning?")
+    ]
+    result = agent_service.process_chat(history)
+    
+    assert len(result["recommendations"]) == 0
+    assert result["end_of_conversation"] is False
+    assert "OPQ32" in result["reply"]
+    assert "Verify Verbal Reasoning" in result["reply"]
+    assert "while" in result["reply"]
+    assert "Which assessments would you like to compare?" not in result["reply"]
+
 if __name__ == "__main__":
     pytest.main([__file__])
